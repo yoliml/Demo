@@ -1,0 +1,45 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job Triggered
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Job runner
+        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Say-hello-bash:
+    runs-on: ubuntu-latest
+    needs:
+      - Explore-GitHub-Actions
+    name: Hello in Bash
+    steps:
+      - run: echo "Hello World!, this is ${{ github.actor }}."
+
+  Say-hello-inline-python:
+    runs-on: ubuntu-24.04
+    needs: Say-hello-bash
+    steps:
+      - run: print("Hello World!, this is ${{ github.actor }}.")
+        shell: python
+  
+  say_hello-javascript:
+    runs-on: ubuntu-latest
+    needs: Say-hello-inline-python
+    name: Hello In JavaScript
+    steps:
+      - name: Say Hello
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "Carla"
