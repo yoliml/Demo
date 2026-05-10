@@ -33,9 +33,7 @@ jobs:
   Say-hello-action:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/hello-world-javascript-action@v1
+      - uses: actions/github-actions-hello@v1
         with:
           who-to-greet: "World"
-      - name: Show date
-        run: date
 
