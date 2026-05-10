@@ -18,3 +18,24 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Say-hello-bash:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World!, this is ${{ github.actor }}."
+
+  Say-hello-inline-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: print("Hello World!, this is ${{ github.actor }}.")
+        shell: python
+  
+  Say-hello-action:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "World"
+      - name: Show date
+        run: date
+
