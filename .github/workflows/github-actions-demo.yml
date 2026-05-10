@@ -21,6 +21,7 @@ jobs:
 
   Say-hello-bash:
     runs-on: ubuntu-latest
+    name: Hello in Bash
     steps:
       - run: echo "Hello World!, this is ${{ github.actor }}."
 
@@ -30,11 +31,11 @@ jobs:
       - run: print("Hello World!, this is ${{ github.actor }}.")
         shell: python
   
-  ping_url:
+  say_hello-javascript:
     runs-on: ubuntu-latest
-    name: Ping URL
+    name: Hello In JavaScript
     steps:
-      - name: Ping the URL
-        uses: soul-wish/ping-url-javascript-action@v1.5
+      - name: Say Hello
+        uses: actions/hello-world-javascript-action@v1
         with:
-          url: "https://google.com"
+          who-to-greet: "Carla"
