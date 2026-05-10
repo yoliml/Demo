@@ -30,10 +30,11 @@ jobs:
       - run: print("Hello World!, this is ${{ github.actor }}.")
         shell: python
   
-  Say-hello-action:
-    runs-on: ubuntu-24.04
+  ping_url:
+    runs-on: ubuntu-latest
+    name: Ping URL
     steps:
-      - uses: actions/github-actions-hello@v1
+      - name: Ping the URL
+        uses: soul-wish/ping-url-javascript-action@v1.5
         with:
-          who-to-greet: "World"
-
+          url: "https://google.com"
