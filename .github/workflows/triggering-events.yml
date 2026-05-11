@@ -1,0 +1,25 @@
+name: Triggering Events
+
+on:
+  push:
+    branches:
+      - "example-branch/*"
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "README.md"
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  echo-event:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Message
+        run: echo "hello"
+
+
+    
