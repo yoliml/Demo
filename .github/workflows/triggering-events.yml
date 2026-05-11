@@ -3,23 +3,23 @@ name: Triggering Events
 on:
   push:
     branches:
-      - "example-branch/*"
+      - "example-branch/*" #you can push only on a specfic branch
 
-  pull_request:
-    types:
+  pull_request: #types of pull request you want to have
+    types: #ONLY when ALL of these are true
       - opened
       - synchronize
       - reopened
     paths:
-      - "README.md"
-  schedule:
+      - "README.md" #path you want to trigger.
+  schedule: #Run the workflow every day at 00:00 (midnight UTC)
     - cron: "0 0 * * *"
 jobs:
   echo-event:
     runs-on: ubuntu-24.04
     steps:
       - name: Message
-        run: echo "hello"
+        run: echo "Triggered by ${{ github.event_name }}"
 
 
     
